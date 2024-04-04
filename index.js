@@ -7,6 +7,7 @@ const rateLimiter = require("express-rate-limit");
 
 const express = require("express");
 const app = express();
+app.use(express.json());
 
 // security
 app.use(helmet());
@@ -20,8 +21,6 @@ app.use(
   })
 );
 
-app.use(express.json());
-
 app.get("/", (req, res) => {
   console.log(req.body);
   res.send("connected");
@@ -30,7 +29,7 @@ app.get("/", (req, res) => {
 app.post("/sendEmail", async (req, res) => {
   await sendEmailUsingGmail(req, res);
 
-  res.send("email sent");
+  // res.send("email sent");
 });
 
 app.use((req, res) => res.status(404).send("Route does not exist"));
