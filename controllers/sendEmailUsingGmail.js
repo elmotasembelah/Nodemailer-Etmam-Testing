@@ -9,10 +9,10 @@ const sendEmailUsingGmail = async (req, res) => {
   const contactInfo = req.body;
   console.log(contactInfo);
 
-  // const mailOptions = generateMailOptions(contactInfo);
+  const mailOptions = generateMailOptions(contactInfo);
 
-  const { success, error } = await sendEmail(transporter, defaultMailOptions);
-  // const { success, error } = await sendEmail(transporter, mailOptions);
+  // const { success, error } = await sendEmail(transporter, defaultMailOptions);
+  const { success, error } = await sendEmail(transporter, mailOptions);
 
   if (success) {
     res.status(200).json({ message: "email sent succesfully" });
